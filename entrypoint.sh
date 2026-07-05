@@ -3,7 +3,7 @@ set -euo pipefail
 
 if [ "${SCRAPER_RUN_ON_START:-0}" = "1" ]; then
   echo "Running scraper and chunker once on startup"
-  python -m scraper.main
+  python scraper/main.py
 fi
 
 if [ "${REINDEX_ON_START:-1}" = "1" ]; then
