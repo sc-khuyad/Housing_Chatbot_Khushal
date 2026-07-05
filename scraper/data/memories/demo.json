@@ -1,0 +1,50 @@
+[
+  {
+    "role": "user",
+    "text": "मुझे घर खरीदने की प्रक्रिया बताओ'"
+  },
+  {
+    "role": "assistant",
+    "text": "I don't have enough relevant context to answer that."
+  },
+  {
+    "role": "user",
+    "text": "How to buy a house in delhi "
+  },
+  {
+    "role": "assistant",
+    "text": "I don't have enough relevant context to answer that."
+  },
+  {
+    "role": "user",
+    "text": "मुझे घर खरीदने की प्रक्रिया बताओ"
+  },
+  {
+    "role": "assistant",
+    "text": "घर खरीदने की प्रक्रिया निम्नलिखित है:\n\n**चरण 1: संपत्ति का चयन**\n\nसबसे पहले, आपको अपने लिए एक उपयुक्त संपत्ति चुननी होगी। आप Housing.com जैसे ऑनलाइन प्लेटफ़ॉर्म का उपयोग करके विभिन्न विकल्पों की तुलना कर सकते हैं।\n\n**चरण 2: ऋण आवेदन**\n\nएक बार जब आप अपनी संपत्ति चुन लेते हैं, तो आपको एक ऋण आवेदन करना होगा। आप अपने बैंक की वेबसाइट पर जाकर ऋण आवेदन कर सकते हैं या अपने नजदीकी बैंक शाखा में जा सकते हैं।\n\n**चरण 3: दस्तावेज़ जमा करना**\n\nआपको अपने ऋण आवेदन के साथ आवश्यक दस्तावेज़ जमा करने होंगे, जैसे कि आय प्रमाण पत्र, पहचान प्रमाण पत्र, और संपत्ति के दस्तावेज़।\n\n**चरण 4: ऋण मूल्यांकन**\n\nबैंक आपके ऋण आवेदन का म"
+  },
+  {
+    "role": "user",
+    "text": "RERA Kya hai?"
+  },
+  {
+    "role": "assistant",
+    "text": "RERA (Real Estate Regulatory Authority) एक भारतीय सरकारी एजेंसी है जिसका उद्देश्य भारत में संपत्ति बाजार को नियंत्रित करना और ग्राहकों के अधिकारों की रक्षा करना है। RERA की स्थापना 2016 में भारत सरकार द्वारा की गई थी और यह सभी राज्यों में कार्य करती है।\n\nRERA के मुख्य उद्देश्य हैं:\n\n1. **संपत्ति बाजार का नियंत्रण**: RERA संपत्ति विकासकों और बायर्स के बीच संबंधों को नियंत्रित करने के लिए जिम्मेदार है।\n2. **ग्राहकों की रक्षा**: RERA ग्राहकों के अधिकारों की रक्षा करने के लिए जिम्मेदार है, जैसे कि उनके पैसे की सुरक्षा और संपत्ति के दस्तावेज़ की प्राप्ति।\n3. **संपत्ति विकासकों की जवाबदेही**: RERA संपत्ति विकासक"
+  },
+  {
+    "role": "user",
+    "text": "What is RERA"
+  },
+  {
+    "role": "assistant",
+    "text": "RERA (Real Estate Regulatory Authority) is a regulatory body established by the Indian government to oversee and regulate the real estate sector in India. The main objective of RERA is to protect the interests of homebuyers and ensure that real estate developers comply with the laws and regulations.\n\nRERA was established in 2016 under the Real Estate (Regulation and Development) Act, 2016. The Act aims to:\n\n1. **Regulate the real estate sector**: RERA regulates the activities of real estate developers, including the sale of properties, construction of buildings, and provision of services.\n2. **Protect the interests of homebuyers**: RERA ensures that homebuyers receive their rights and entitlements, including timely possession of the property, refund of their money, and compensation for any delays or defects.\n3. **Promote transparency and accountability**: RERA requires real estate developers to disclose all information about the project, including the project details, timeline, and costs.\n4. **Provide a dispute resolution mechanism**: RERA provides a platform for homebuyers and real estate developers to resolve disputes through a fair and transparent process.\n\nSome of the key features of RERA include:\n\n* **Registration of real estate projects**: All real estate projects must be registered with RERA before they can be marketed or sold.\n* **Disclosure of project details**: Real estate developers must disclose all information about the project, including the project details, timeline, and costs.\n* **Timely possession**:"
+  },
+  {
+    "role": "user",
+    "text": "What is RERA"
+  },
+  {
+    "role": "assistant",
+    "text": "RERA (Real Estate Regulatory Authority) is a regulatory body established by the Indian government to oversee and regulate the real estate sector in India. [chunk_id: housing_delhi_004_005_chunk_004 | url: https://housing.com/news/palm-olympia-redefining-upscale-living-at-the-heart-of-greater-noida/]\n\nRERA was established in 2016 under the Real Estate (Regulation and Development) Act, 2016. The Act aims to:\n\n1. **Regulate the real estate sector**: RERA regulates the activities of real estate developers, including the sale of properties, construction of buildings, and provision of services.\n2. **Protect the interests of homebuyers**: RERA ensures that homebuyers receive their rights and entitlements, including timely possession of the property, refund of their money, and compensation for any delays or defects.\n3. **Promote transparency and accountability**: RERA requires real estate developers to disclose all information about the project, including the project details, timeline, and costs.\n4. **Provide a dispute resolution mechanism**: RERA provides a platform for homebuyers and real estate developers to resolve disputes through a fair and transparent process.\n\nSome of the key features of RERA include:\n\n* **Registration of real estate projects**: All real estate projects must be registered with RERA before they can be marketed or sold.\n* **Disclosure of project details**: Real estate developers must disclose all information about the"
+  }
+]

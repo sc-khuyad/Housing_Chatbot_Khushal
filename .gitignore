@@ -1,0 +1,44 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+*.pyo
+*.pyd
+build/
+dist/
+wheels/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# IDE and OS files
+.DS_Store
+.vscode/
+.idea/
+
+# Scraper runtime data and browser state
+scraper/browser_profile/
+scraper/data/raw_scraped.json
+scraper/data/chunks.json
+scraper/data/scrape_log.txt
+scraper/data/*.log
+scraper/data/*.tmp
+scraper/data/cache/
+
+# Application logs and runtime artifacts
+*.log
+*.tmp
+*.pid
