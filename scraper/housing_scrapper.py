@@ -88,7 +88,7 @@ class ScraperConfig:
     target_urls: List[dict] = field(default_factory=lambda: DEFAULT_TARGET_URLS)
     max_articles_per_seed: int = 30
     region: str = "Delhi NCR"
-    headless: bool = False
+    headless: bool = True
     timeout_ms: int = 25000
     data_dir: Path = DATA_DIR
     user_agent: str = USER_AGENT

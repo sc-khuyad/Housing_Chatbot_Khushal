@@ -9,7 +9,7 @@ services:
     environment:
       BACKEND_URL: http://localhost:8000/chat
       ELASTICSEARCH_URL: http://elasticsearch:9200
-      SCRAPER_RUN_ON_START: "0"
+      SCRAPER_RUN_ON_START: "1"
       REINDEX_ON_START: "1"
     ports:
       - "8000:8000"
