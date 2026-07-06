@@ -14,6 +14,7 @@ flowchart LR
     R --> H[Hybrid Retrieval]
     H --> E[(Elasticsearch)]
     R --> P[Prompt Builder]
+    E --> P
     P --> G[LLM Generation]
     G --> A
     A --> S
