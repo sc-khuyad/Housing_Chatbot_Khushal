@@ -334,3 +334,72 @@ def test_chat_returns_response_when_generation_fails(monkeypatch):
     response = app_module.chat(ChatRequest(session_id="demo", query="hello", top_k=1, system_prompt=None, debug_prompt=False))
 
     assert response.answer is not None
+
+
+def test_extract_whatsapp_message_parses_text_payload():
+    from backend.whatsapp import extract_whatsapp_message
+
+    payload = {
+        "entry": [
+            {
+                "changes": [
+                    {
+                        "value": {
+                            "messages": [
+                                {
+                                    "from": "919999999999",
+                                    "type": "text",
+                                    "text": {"body": "What is RERA?"},
+                                }
+                            ],
+                            "metadata": {"phone_number_id": "123456789"},
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+
+    assert extract_whatsapp_message(payload) == ("What is RERA?", "919999999999", "123456789")
+
+
+def test_format_whatsapp_reply_includes_chunk_sources():
+    from backend.whatsapp import format_whatsapp_reply
+
+    reply = format_whatsapp_reply(
+        "RERA regulates real estate projects.",
+        [
+            {"chunk_id": "housing_delhi_001_006_chunk_001", "url": "https://example.com/rera"},
+            {"chunk_id": "housing_delhi_001_007_chunk_002", "url": "https://example.com/second"},
+        ],
+    )
+
+    assert "RERA regulates real estate projects." in reply
+    assert "housing_delhi_001_006_chunk_001" in reply
+    assert "https://example.com/rera" in reply
+
+
+def test_extract_twilio_whatsapp_message_parses_form_payload():
+    from backend.twilio_whatsapp import extract_twilio_whatsapp_message
+
+    payload = {
+        "Body": "What is RERA?",
+        "From": "whatsapp:+919999999999",
+        "WaId": "919999999999",
+    }
+
+    assert extract_twilio_whatsapp_message(payload) == ("What is RERA?", "whatsapp:+919999999999")
+
+
+def test_build_twilio_twiml_wraps_reply_text():
+    from backend.twilio_whatsapp import build_twilio_twiml, format_twilio_whatsapp_reply
+
+    reply = format_twilio_whatsapp_reply(
+        "RERA regulates real estate projects.",
+        [{"chunk_id": "housing_delhi_001_006_chunk_001", "url": "https://example.com/rera"}],
+    )
+    twiml = build_twilio_twiml(reply)
+
+    assert twiml.startswith("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
+    assert "<Message>" in twiml
+    assert "housing_delhi_001_006_chunk_001" in twiml

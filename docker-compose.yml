@@ -1,23 +1,21 @@
 version: '3.9'
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: housing-chatbot:latest
-    container_name: housing-chatbot-app
-    environment:
-      BACKEND_URL: http://localhost:8000/chat
-      ELASTICSEARCH_URL: http://elasticsearch:9200
-      SCRAPER_RUN_ON_START: "1"
-      REINDEX_ON_START: "1"
-    ports:
-      - "8000:8000"
-      - "8501:8501"
-    depends_on:
-      - elasticsearch
-    volumes:
-      - .:/app
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   image: housing-chatbot:latest
+  #   container_name: housing-chatbot-app
+  #   environment:
+  #     BACKEND_URL: http://localhost:8000/chat
+  #     ELASTICSEARCH_URL: http://elasticsearch:9200
+  #   ports:
+  #     - "8000:8000"
+  #     - "8501:8501"
+  #   depends_on:
+  #     - elasticsearch
+  #   volumes:
+  #     - .:/app
 
   elasticsearch:
     image: elasticsearch:9.4.2

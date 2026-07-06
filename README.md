@@ -55,6 +55,8 @@ flowchart LR
 ### API layer
 
 - **FastAPI** exposes the `/chat`, `/clear-memory`, and `/ready` endpoints.
+- **WhatsApp Cloud API** is supported through `/whatsapp/webhook` for webhook verification and message replies.
+- **Twilio WhatsApp** is supported through `/twilio/whatsapp/webhook` and reuses the same chat pipeline.
 - **Pydantic** models define request and response schemas.
 - **Requests** is used for the remote LLM calls.
 
@@ -221,6 +223,34 @@ Implemented in `streamlit_app.py`.
 - It supports clearing the session memory through the backend.
 - It normalizes bad backend URL values and defaults to `http://localhost:8000/chat`.
 
+### 10. WhatsApp integration
+
+Implemented in `backend/whatsapp.py` and wired through `backend/app.py`.
+
+- Set `WHATSAPP_VERIFY_TOKEN` to the token configured in Meta's webhook settings.
+- Set `WHATSAPP_PHONE_NUMBER_ID` and `WHATSAPP_ACCESS_TOKEN` so the backend can send replies.
+- Meta should call `GET /whatsapp/webhook` for verification.
+- Meta should send incoming messages to `POST /whatsapp/webhook`.
+- The backend reuses the same retrieval, reranking, and generation flow as the Streamlit UI.
+- Replies sent back to WhatsApp include the answer plus a short source list with chunk IDs and URLs.
+
+### 11. Twilio WhatsApp integration
+
+Implemented in `backend/twilio_whatsapp.py` and wired through `backend/app.py`.
+
+This path is the easiest way to test WhatsApp with free trial credits because it uses Twilio's WhatsApp sandbox and returns TwiML directly from the backend.
+
+- Create a Twilio account and enable the WhatsApp sandbox.
+- Join the sandbox from your phone using the code Twilio gives you.
+- Set the Twilio sandbox webhook URL to `https://<your-public-host>/twilio/whatsapp/webhook`.
+- Expose your local backend with an HTTPS tunnel such as ngrok or cloudflared.
+- The backend reads inbound Twilio form fields like `Body` and `From`, then calls the same `build_chat_response` flow used by `/chat`.
+- The backend returns a TwiML `<Message>` response, so Twilio sends the reply back to WhatsApp automatically.
+- Replies include the answer plus chunk IDs and URLs from the retrieved sources.
+- For local development, run `scripts/expose_backend.sh` to open a public HTTPS tunnel using `cloudflared` or `ngrok`.
+- Set the Twilio sandbox webhook to `https://<your-public-host>/twilio/whatsapp/webhook`.
+- If you prefer to run the tunnel manually, use `cloudflared tunnel --url http://127.0.0.1:8000` or `ngrok http 8000`.
+
 ## API Endpoints
 
 ### `POST /chat`
@@ -290,6 +320,7 @@ These environment variables control the system:
 | `GROQ_MODEL` | Groq model name | `llama-3.1-8b-instant` |
 | `OPENAI_API_KEY` | OpenAI API key | unset |
 | `OPENAI_MODEL` | OpenAI model name | `gpt-4o-mini` |
+| `TWILIO_TOP_K` | Number of retrieved chunks to use for Twilio replies | `3` |
 | `SCRAPER_RUN_ON_START` | Run scraper when container starts | `0` |
 | `REINDEX_ON_START` | Rebuild Elasticsearch index on container start | `1` |
 | `FORCE_RECREATE_INDEX` | Force index recreation when indexing | `1` |
@@ -336,6 +367,22 @@ uvicorn backend.app:app --reload --port 8000
 
 ```bash
 streamlit run streamlit_app.py
+```
+
+### 4. Optional Twilio WhatsApp setup
+
+If you want WhatsApp access through Twilio instead of the Meta Cloud API:
+
+1. Enable the Twilio WhatsApp sandbox in your Twilio console.
+2. Start the tunnel with `scripts/expose_backend.sh` or a manual `ngrok` / `cloudflared` command.
+3. Set the sandbox webhook to `https://<your-public-host>/twilio/whatsapp/webhook`.
+4. Start the backend with `uvicorn backend.app:app --reload --port 8000`.
+5. Send a WhatsApp message to the sandbox number from your phone.
+
+Example local environment values:
+
+```bash
+TWILIO_TOP_K=3
 ```
 
 ## Notes    
